@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh "ssh 1.0.1.41 'ls ~/'"
+                sh "ssh 1.0.1.41 'ls /home/ubuntu'"
             //   sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
             }
         }
