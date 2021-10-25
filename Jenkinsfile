@@ -1,12 +1,15 @@
 pipeline {
-    agent {label 'ec2'}
+    //agent {label 'ec2'}
+    agent any
     
     stages {
         stage('build') {
             steps {
-               sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
+                sh "ssh 1.0.1.41 'ls ~/'"
+            //   sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
             }
         }
+        /*
         stage('push') {
             steps {
                withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'pass', usernameVariable: 'usname')]) {
@@ -24,7 +27,7 @@ pipeline {
                    -e REDIS_PORT="6379" \
                    omarquraah/nodejs_app_image:v1'
             }
-        }
+        } */
         
     }
 }
