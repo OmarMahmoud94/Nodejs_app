@@ -1,12 +1,11 @@
 pipeline {
-    //agent {label 'ec2'}
-    agent any
+    agent {label 'app_node'}
     
     stages {
         stage('build') {
             steps {
-                sh "ssh 1.0.1.41 'ls /home/ubuntu'"
-            //   sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
+                //sh "ssh 1.0.1.41 'ls /home/ubuntu'"
+              sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
             }
         }
         /*
