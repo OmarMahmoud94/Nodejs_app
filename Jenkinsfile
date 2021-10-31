@@ -1,28 +1,30 @@
 pipeline {
-    agent any
+    // agent any
+    agent {label 'ec3'}
+
     
     stages {
         stage('build') {
             steps {
-                //sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
-                sshPublisher(
-                    publishers: [sshPublisherDesc(
-                        configName: 'app_node', 
-                        transfers: [sshTransfer(
-                            cleanRemote: false, excludes: '', 
-                            execCommand: 'sudo docker build . -t omarquraah/nodejs_app_image:v1', 
-                            execTimeout: 120000, 
-                            flatten: false, 
-                            makeEmptyDirs: false, 
-                            noDefaultExcludes: false, 
-                            patternSeparator: '[, ]+', 
-                            remoteDirectory: '', 
-                            remoteDirectorySDF: false, 
-                            removePrefix: '', 
-                            sourceFiles: '')], 
-                        usePromotionTimestamp: false, 
-                        useWorkspaceInPromotion: false, 
-                        verbose: true)])
+                sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
+                // sshPublisher(
+                //     publishers: [sshPublisherDesc(
+                //         configName: 'app_node', 
+                //         transfers: [sshTransfer(
+                //             cleanRemote: false, excludes: '', 
+                //             execCommand: 'sudo docker build . -t omarquraah/nodejs_app_image:v1', 
+                //             execTimeout: 120000, 
+                //             flatten: false, 
+                //             makeEmptyDirs: false, 
+                //             noDefaultExcludes: false, 
+                //             patternSeparator: '[, ]+', 
+                //             remoteDirectory: '', 
+                //             remoteDirectorySDF: false, 
+                //             removePrefix: '', 
+                //             sourceFiles: '')], 
+                //         usePromotionTimestamp: false, 
+                //         useWorkspaceInPromotion: false, 
+                //         verbose: true)])
             }
         }
         /*
