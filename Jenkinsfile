@@ -20,7 +20,9 @@ pipeline {
                             remoteDirectorySDF: false, 
                             removePrefix: '', 
                             sourceFiles: '')], 
-                        usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                        usePromotionTimestamp: false, 
+                        useWorkspaceInPromotion: false, 
+                        verbose: true)])
             }
         }
         /*
