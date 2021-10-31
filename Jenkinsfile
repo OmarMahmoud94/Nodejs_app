@@ -4,12 +4,22 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                //sh "ssh 1.0.1.41 'ls /home/ubuntu'"
                 //sh 'sudo docker build . -t omarquraah/nodejs_app_image:v1'
                 sshPublisher(
                     publishers: [sshPublisherDesc(
                         configName: 'app_node', 
-                        transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'mkdir omar', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], 
+                        transfers: [sshTransfer(
+                            cleanRemote: false, excludes: '', 
+                            execCommand: 'sudo docker build . -t omarquraah/nodejs_app_image:v1', 
+                            execTimeout: 120000, 
+                            flatten: false, 
+                            makeEmptyDirs: false, 
+                            noDefaultExcludes: false, 
+                            patternSeparator: '[, ]+', 
+                            remoteDirectory: '', 
+                            remoteDirectorySDF: false, 
+                            removePrefix: '', 
+                            sourceFiles: '')], 
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
